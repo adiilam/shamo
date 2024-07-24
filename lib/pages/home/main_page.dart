@@ -19,7 +19,9 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     Widget cartButton() {
       return FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/cart');
+        },
         backgroundColor: secondaryColor,
         child: Image.asset(
           'assets/icon_cart.png',
@@ -31,18 +33,17 @@ class _MainPageState extends State<MainPage> {
     Widget customBottomNav() {
       return ClipRRect(
         borderRadius: const BorderRadius.vertical(
-          top: Radius.circular(30),
+          top: Radius.circular(20),
         ),
         child: BottomAppBar(
-          color: backgroundColor4,
           shape: const CircularNotchedRectangle(),
           notchMargin: 12,
           clipBehavior: Clip.antiAlias,
+          color: backgroundColor4,
           child: BottomNavigationBar(
             backgroundColor: backgroundColor4,
             currentIndex: currentIndex,
             onTap: (value) {
-              print(value);
               setState(() {
                 currentIndex = value;
               });
@@ -50,53 +51,69 @@ class _MainPageState extends State<MainPage> {
             type: BottomNavigationBarType.fixed,
             items: [
               BottomNavigationBarItem(
-                  icon: Container(
-                    margin: const EdgeInsets.only(top: 20, bottom: 10),
-                    child: Image.asset(
-                      'assets/icon_home.png',
-                      width: 21,
-                      color: currentIndex == 0
-                          ? primaryColor
-                          : const Color(0xff808191),
-                    ),
+                icon: Container(
+                  margin: const EdgeInsets.only(
+                      // top: 10,
+                      // bottom: 10,
+                      ),
+                  child: Image.asset(
+                    'assets/icon_home.png',
+                    width: 21,
+                    color: currentIndex == 0
+                        ? primaryColor
+                        : const Color(0xff808191),
                   ),
-                  label: ''),
+                ),
+                label: '',
+              ),
               BottomNavigationBarItem(
-                  icon: Container(
-                    margin: const EdgeInsets.only(top: 20, bottom: 10),
-                    child: Image.asset(
-                      'assets/icon_chat.png',
-                      width: 20,
-                      color: currentIndex == 1
-                          ? primaryColor
-                          : const Color(0xff808191),
-                    ),
+                icon: Container(
+                  margin: const EdgeInsets.only(
+                      // top: 10,
+                      // bottom: 10,
+                      ),
+                  child: Image.asset(
+                    'assets/icon_chat.png',
+                    width: 20,
+                    color: currentIndex == 1
+                        ? primaryColor
+                        : const Color(0xff808191),
                   ),
-                  label: ''),
+                ),
+                label: '',
+              ),
               BottomNavigationBarItem(
-                  icon: Container(
-                    margin: const EdgeInsets.only(top: 20, bottom: 10),
-                    child: Image.asset(
-                      'assets/icon_favorite.png',
-                      width: 20,
-                      color: currentIndex == 2
-                          ? primaryColor
-                          : const Color(0xff808191),
-                    ),
+                icon: Container(
+                  margin: const EdgeInsets.only(
+                      // top: 10,
+                      // bottom: 10,
+                      ),
+                  child: Image.asset(
+                    'assets/icon_favorite.png',
+                    width: 20,
+                    color: currentIndex == 2
+                        ? primaryColor
+                        : const Color(0xff808191),
                   ),
-                  label: ''),
+                ),
+                label: '',
+              ),
               BottomNavigationBarItem(
-                  icon: Container(
-                    margin: const EdgeInsets.only(top: 20, bottom: 10),
-                    child: Image.asset(
-                      'assets/icon_profile.png',
-                      width: 18,
-                      color: currentIndex == 3
-                          ? primaryColor
-                          : const Color(0xff808191),
-                    ),
+                icon: Container(
+                  margin: const EdgeInsets.only(
+                      // top: 20,
+                      // bottom: 10,
+                      ),
+                  child: Image.asset(
+                    'assets/icon_profile.png',
+                    width: 18,
+                    color: currentIndex == 3
+                        ? primaryColor
+                        : const Color(0xff808191),
                   ),
-                  label: ''),
+                ),
+                label: '',
+              ),
             ],
           ),
         ),
@@ -123,7 +140,7 @@ class _MainPageState extends State<MainPage> {
     }
 
     return Scaffold(
-      backgroundColor: backgroundColor1,
+      backgroundColor: currentIndex == 0 ? backgroundColor1 : backgroundColor3,
       floatingActionButton: cartButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: customBottomNav(),
